@@ -27,7 +27,7 @@ if [ "${BASE_URL}" ]; then
   sed -i "s|location / {|location $BASE_URL {|g" /etc/nginx/nginx.conf
 fi
 if [ "${GITHUB_TOKEN}" ]; then
-  sed -i "s|TOKEN {|$GITHUB_TOKEN {|g" /etc/nginx/nginx.conf
+  sed -i -e "s/TOKEN/$GITHUB_TOKEN/g" /etc/nginx/nginx.conf
 fi
 
 replace_in_index myApiKeyXXXX123456789 $API_KEY
