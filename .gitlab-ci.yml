@@ -1,0 +1,16 @@
+deploy:
+    stage: deploy
+    environment: production
+    image: 'coxauto/aws-ebcli'
+    variables:
+        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    # Setup AWS CLI to have proper credential keys
+    before_script:
+        - 'mkdir ~/.aws/'
+        - 'touch ~/.aws/credentials'
+        - 'printf "[eb-cli]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials'
+    # Run deployment using EB CLI deploy on master branch
+    script:
+        #- 'git checkout master'
+        - 'eb printenv swagger-dev'
