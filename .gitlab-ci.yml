@@ -12,6 +12,6 @@ deploy:
         - 'printf "[eb-cli]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials'
     # Run deployment using EB CLI deploy on master branch
     script:
-        #- 'git checkout master'
+        - 'git checkout eb-test'
         - 'eb setenv URLS=$(cat env.var | cut -d = -f2) -e swagger-dev'
         - 'eb printenv swagger-dev'
