@@ -15,5 +15,5 @@ deploy:
         - 'git checkout eb-test'
         - 'export urls=$(cat env.var | cut -d = -f2)'
         - 'echo $urls'
-        - 'eb setenv URLS=$urls -e swagger-dev'
+        - "eb setenv URLS=\'$urls\' -e swagger-dev"
         - 'eb printenv swagger-dev'
