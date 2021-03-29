@@ -13,5 +13,5 @@ deploy:
     # Run deployment using EB CLI deploy on master branch
     script:
         #- 'urls=$(cat env.var | cut -d = -f2)'
-        - 'eb setenv "$(cat env.var)"   GITHUB_TOKEN=$GITHUB_TOKEN -e swagger-dev'
+        - 'eb setenv "$(cat env.var)" GITHUB_TOKEN=$GITHUB_TOKEN -e swagger-dev'
         - 'eb printenv swagger-dev'
