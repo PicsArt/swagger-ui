@@ -12,6 +12,6 @@ deploy:
 #        - 'printf "[eb-cli]\naws_access_key_id = %s\naws_secret_access_key = %s\n" "$AWS_ACCESS_KEY_ID" "$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials'
     # Run deployment using EB CLI deploy on master branch
     script:
-        - 'urls=$(cat env.var | cut -d = -f2)'
-        - "eb setenv URLS=$urls GITHUB_TOKEN=$GITHUB_TOKEN -e swagger-dev"
+        #- 'urls=$(cat env.var | cut -d = -f2)'
+        - 'eb setenv "$(cat env.var)" -e swagger-dev  GITHUB_TOKEN=$GITHUB_TOKEN -e swagger-dev'
         - 'eb printenv swagger-dev'
