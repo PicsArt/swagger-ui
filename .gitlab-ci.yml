@@ -1,0 +1,10 @@
+deploy:
+    stage: deploy
+    environment: production
+    image: 'coxauto/aws-ebcli'
+    variables:
+        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    script:
+        - 'eb setenv "$(cat env.var)" GITHUB_TOKEN=$GITHUB_TOKEN -e swagger-dev'
+        - 'eb printenv swagger-dev'
